@@ -1,0 +1,733 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.text.*?>
+
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="768.0" prefWidth="1366.0" xmlns="http://javafx.com/javafx/11.0.2" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.dhickel.controller.MainScreen">
+   <children>
+      <TabPane maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="768.0" prefWidth="1000.0" tabClosingPolicy="UNAVAILABLE" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+        <tabs>
+          <Tab text="Appointments">
+            <content>
+              <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
+                     <children>
+                        <HBox prefHeight="719.0" prefWidth="1356.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                           <children>
+                              <TableView fx:id="apt_table" maxWidth="-Infinity" prefHeight="719.0" prefWidth="1000.0">
+                                <columns>
+                                  <TableColumn fx:id="apt_table_appointment_id" prefWidth="90.0" text="Appt. ID" />
+                                  <TableColumn fx:id="apt_table_title" prefWidth="82.0" text="Title" />
+                                    <TableColumn fx:id="apt_table_description" prefWidth="133.0" text="Description" />
+                                    <TableColumn fx:id="apt_table_location" prefWidth="100.0" text="Location" />
+                                    <TableColumn fx:id="apt_table_contact" prefWidth="66.0" text="Contact ID" />
+                                    <TableColumn fx:id="apt_table_type" prefWidth="131.0" text="Type" />
+                                    <TableColumn fx:id="apt_table_start" prefWidth="125.0" text="Start" />
+                                    <TableColumn fx:id="apt_table_end" minWidth="100.0" prefWidth="129.0" text="End" />
+                                    <TableColumn fx:id="apt_table_customer_id" prefWidth="77.0" text="Customer ID" />
+                                    <TableColumn fx:id="apt_table_user_id" minWidth="3.0" prefWidth="61.0" text="User ID" />
+                                </columns>
+                              </TableView>
+                              <VBox prefHeight="768.0" prefWidth="366.0">
+                                 <children>
+                                    <Separator prefWidth="200.0">
+                                       <VBox.margin>
+                                          <Insets />
+                                       </VBox.margin>
+                                    </Separator>
+                                    <Label alignment="CENTER" prefHeight="7.0" prefWidth="361.0" text="Filter Appointments">
+                                       <font>
+                                          <Font name="System Bold" size="16.0" />
+                                       </font>
+                                       <VBox.margin>
+                                          <Insets />
+                                       </VBox.margin>
+                                    </Label>
+                                    <Separator prefWidth="200.0" />
+                                    <HBox layoutX="10.0" layoutY="51.0" prefHeight="25.0" prefWidth="366.0">
+                                       <children>
+                                          <RadioButton fx:id="apt_filter_all" layoutX="130.0" layoutY="10.0" mnemonicParsing="false" onAction="#filterAll" text="All">
+                                             <font>
+                                                <Font size="14.0" />
+                                             </font>
+                                             <HBox.margin>
+                                                <Insets left="30.0" />
+                                             </HBox.margin>
+                                             <toggleGroup>
+                                                <ToggleGroup fx:id="filterToggle" />
+                                             </toggleGroup>
+                                          </RadioButton>
+                                          <RadioButton fx:id="apt_filter_week" mnemonicParsing="false" onAction="#filterWeek" text="Week" toggleGroup="$filterToggle">
+                                             <HBox.margin>
+                                                <Insets left="30.0" />
+                                             </HBox.margin>
+                                             <font>
+                                                <Font size="14.0" />
+                                             </font>
+                                          </RadioButton>
+                                          <RadioButton fx:id="apt_filter_month" layoutX="184.0" layoutY="10.0" mnemonicParsing="false" onAction="#filterMonth" text="Month" toggleGroup="$filterToggle">
+                                             <HBox.margin>
+                                                <Insets left="30.0" />
+                                             </HBox.margin>
+                                             <font>
+                                                <Font size="14.0" />
+                                             </font>
+                                          </RadioButton>
+                                       </children>
+                                       <VBox.margin>
+                                          <Insets left="40.0" top="5.0" />
+                                       </VBox.margin>
+                                    </HBox>
+                                    <Separator layoutX="10.0" layoutY="48.0" prefWidth="200.0">
+                                       <VBox.margin>
+                                          <Insets top="5.0" />
+                                       </VBox.margin>
+                                    </Separator>
+                                    <Label alignment="CENTER" layoutX="10.0" layoutY="23.0" prefHeight="17.0" prefWidth="367.0" text="Add/Edit Appointments">
+                                       <font>
+                                          <Font name="System Bold" size="16.0" />
+                                       </font>
+                                    </Label>
+                                    <Separator layoutX="10.0" layoutY="48.0" prefWidth="200.0" />
+                                    <HBox alignment="CENTER" prefHeight="29.0" prefWidth="366.0" spacing="10.0">
+                                       <children>
+                                          <Button fx:id="apt_action_new" mnemonicParsing="false" onAction="#newAppointment" text="New Appointment" />
+                                          <Button fx:id="apt_action_edit" layoutX="80.0" layoutY="12.0" mnemonicParsing="false" onAction="#editAppointment" text="Edit Selected" />
+                                          <Button fx:id="apt_action_reset_selection" mnemonicParsing="false" onAction="#resetAppointment" text="Reset Selection" />
+                                       </children>
+                                       <VBox.margin>
+                                          <Insets top="5.0" />
+                                       </VBox.margin>
+                                    </HBox>
+                                    <Separator layoutX="10.0" layoutY="142.0" prefWidth="200.0">
+                                       <VBox.margin>
+                                          <Insets top="5.0" />
+                                       </VBox.margin>
+                                    </Separator>
+                                    <HBox prefHeight="28.0" prefWidth="346.0" spacing="10.0">
+                                       <children>
+                                          <Label alignment="CENTER" prefWidth="100.0" text="Appointment ID">
+                                             <font>
+                                                <Font size="14.0" />
+                                             </font>
+                                             <HBox.margin>
+                                                <Insets top="3.0" />
+                                             </HBox.margin>
+                                          </Label>
+                                          <TextField fx:id="apt_field_appointment_id" disable="true" editable="false" prefHeight="25.0" prefWidth="200.0" />
+                                       </children>
+                                       <VBox.margin>
+                                          <Insets left="30.0" top="5.0" />
+                                       </VBox.margin>
+                                    </HBox>
+                                    <HBox layoutX="30.0" layoutY="192.0" prefHeight="28.0" prefWidth="346.0" spacing="10.0">
+                                       <children>
+                                          <Label prefHeight="20.0" prefWidth="100.0" text="Title">
+                                             <font>
+                                                <Font size="14.0" />
+                                             </font>
+                                             <HBox.margin>
+                                                <Insets top="3.0" />
+                                             </HBox.margin>
+                                          </Label>
+                                          <TextField fx:id="apt_field_title" prefHeight="25.0" prefWidth="200.0" />
+                                       </children>
+                                       <VBox.margin>
+                                          <Insets left="30.0" top="5.0" />
+                                       </VBox.margin>
+                                    </HBox>
+                                    <HBox layoutX="40.0" layoutY="220.0" prefHeight="28.0" prefWidth="336.0" spacing="10.0">
+                                       <children>
+                                          <Label prefHeight="20.0" prefWidth="100.0" text="Description">
+                                             <font>
+                                                <Font size="14.0" />
+                                             </font>
+                                             <HBox.margin>
+                                                <Insets top="3.0" />
+                                             </HBox.margin>
+                                          </Label>
+                                          <TextField fx:id="apt_field_description" prefWidth="200.0" />
+                                       </children>
+                                       <VBox.margin>
+                                          <Insets left="30.0" top="5.0" />
+                                       </VBox.margin>
+                                    </HBox>
+                                    <HBox layoutX="40.0" layoutY="220.0" prefHeight="28.0" prefWidth="346.0" spacing="10.0">
+                                       <children>
+                                          <Label prefHeight="20.0" prefWidth="100.0" text="Location">
+                                             <font>
+                                                <Font size="14.0" />
+                                             </font>
+                                             <HBox.margin>
+                                                <Insets top="3.0" />
+                                             </HBox.margin>
+                                          </Label>
+                                          <TextField fx:id="apt_field_location" prefHeight="25.0" prefWidth="200.0" />
+                                       </children>
+                                       <VBox.margin>
+                                          <Insets left="30.0" top="8.0" />
+                                       </VBox.margin>
+                                    </HBox>
+                                    <HBox layoutX="40.0" layoutY="326.0" prefHeight="28.0" prefWidth="346.0" spacing="10.0">
+                                       <children>
+                                          <Label prefHeight="20.0" prefWidth="100.0" text="Type">
+                                             <font>
+                                                <Font size="14.0" />
+                                             </font>
+                                             <HBox.margin>
+                                                <Insets top="3.0" />
+                                             </HBox.margin>
+                                          </Label>
+                                          <TextField fx:id="apt_field_type" prefHeight="25.0" prefWidth="200.0" />
+                                       </children>
+                                       <VBox.margin>
+                                          <Insets left="30.0" top="5.0" />
+                                       </VBox.margin>
+                                    </HBox>
+                                    <Separator prefWidth="200.0">
+                                       <VBox.margin>
+                                          <Insets top="5.0" />
+                                       </VBox.margin>
+                                    </Separator>
+                                    <HBox layoutX="40.0" layoutY="354.0" prefHeight="28.0" prefWidth="346.0" spacing="10.0">
+                                       <children>
+                                          <Label prefHeight="20.0" prefWidth="100.0" text="Start Date">
+                                             <font>
+                                                <Font size="14.0" />
+                                             </font>
+                                             <HBox.margin>
+                                                <Insets top="3.0" />
+                                             </HBox.margin>
+                                          </Label>
+                                          <DatePicker fx:id="apt_field_start_date" prefWidth="180.0" />
+                                       </children>
+                                       <VBox.margin>
+                                          <Insets left="30.0" top="5.0" />
+                                       </VBox.margin>
+                                    </HBox>
+                                    <HBox layoutX="40.0" layoutY="382.0" prefHeight="28.0" prefWidth="346.0" spacing="10.0">
+                                       <VBox.margin>
+                                          <Insets />
+                                       </VBox.margin>
+                                       <children>
+                                          <Label prefHeight="20.0" prefWidth="68.0" text="Time">
+                                             <font>
+                                                <Font size="14.0" />
+                                             </font>
+                                             <HBox.margin>
+                                                <Insets left="62.0" />
+                                             </HBox.margin>
+                                          </Label>
+                                          <ComboBox fx:id="apt_field_start_time" prefWidth="100.0">
+                                             <HBox.margin>
+                                                <Insets />
+                                             </HBox.margin>
+                                          </ComboBox>
+                                       </children>
+                                    </HBox>
+                                    <HBox layoutX="40.0" layoutY="382.0" prefHeight="28.0" prefWidth="346.0" spacing="10.0">
+                                       <children>
+                                          <Label prefHeight="20.0" prefWidth="100.0" text="End Date">
+                                             <font>
+                                                <Font size="14.0" />
+                                             </font>
+                                             <HBox.margin>
+                                                <Insets top="3.0" />
+                                             </HBox.margin>
+                                          </Label>
+                                          <DatePicker fx:id="apt_field_end_date" prefWidth="180.0" />
+                                       </children>
+                                       <VBox.margin>
+                                          <Insets left="30.0" top="5.0" />
+                                       </VBox.margin>
+                                    </HBox>
+                                    <HBox layoutX="10.0" layoutY="443.0" prefHeight="28.0" prefWidth="346.0" spacing="10.0">
+                                       <children>
+                                          <Label prefHeight="20.0" prefWidth="68.0" text="Time">
+                                             <font>
+                                                <Font size="14.0" />
+                                             </font>
+                                             <HBox.margin>
+                                                <Insets left="62.0" />
+                                             </HBox.margin>
+                                          </Label>
+                                          <ComboBox fx:id="apt_field_end_time" prefWidth="100.0">
+                                             <HBox.margin>
+                                                <Insets />
+                                             </HBox.margin>
+                                          </ComboBox>
+                                       </children>
+                                    </HBox>
+                                    <Separator layoutX="10.0" layoutY="407.0" prefWidth="200.0">
+                                       <VBox.margin>
+                                          <Insets top="5.0" />
+                                       </VBox.margin>
+                                    </Separator>
+                                    <HBox layoutX="10.0" layoutY="504.0" prefHeight="28.0" prefWidth="346.0" spacing="10.0">
+                                       <children>
+                                          <Label prefHeight="20.0" prefWidth="100.0" text="Contact">
+                                             <font>
+                                                <Font size="14.0" />
+                                             </font>
+                                             <HBox.margin>
+                                                <Insets left="30.0" top="3.0" />
+                                             </HBox.margin>
+                                          </Label>
+                                          <ComboBox fx:id="apt_field_contact" prefHeight="25.0" prefWidth="200.0">
+                                             <HBox.margin>
+                                                <Insets />
+                                             </HBox.margin>
+                                          </ComboBox>
+                                       </children>
+                                       <VBox.margin>
+                                          <Insets top="5.0" />
+                                       </VBox.margin>
+                                    </HBox>
+                                    <HBox layoutX="10.0" layoutY="540.0" prefHeight="28.0" prefWidth="346.0" spacing="10.0">
+                                       <children>
+                                          <Label prefHeight="20.0" prefWidth="100.0" text="Customer">
+                                             <font>
+                                                <Font size="14.0" />
+                                             </font>
+                                             <HBox.margin>
+                                                <Insets left="30.0" top="3.0" />
+                                             </HBox.margin>
+                                          </Label>
+                                          <ComboBox fx:id="apt_field_customer" prefHeight="25.0" prefWidth="200.0">
+                                             <HBox.margin>
+                                                <Insets />
+                                             </HBox.margin>
+                                          </ComboBox>
+                                       </children>
+                                       <VBox.margin>
+                                          <Insets top="5.0" />
+                                       </VBox.margin>
+                                    </HBox>
+                                    <HBox layoutX="10.0" layoutY="573.0" prefHeight="28.0" prefWidth="346.0" spacing="10.0">
+                                       <children>
+                                          <Label prefHeight="20.0" prefWidth="100.0" text="User">
+                                             <font>
+                                                <Font size="14.0" />
+                                             </font>
+                                             <HBox.margin>
+                                                <Insets left="30.0" top="3.0" />
+                                             </HBox.margin>
+                                          </Label>
+                                          <ComboBox fx:id="apt_field_user" prefHeight="25.0" prefWidth="200.0">
+                                             <HBox.margin>
+                                                <Insets />
+                                             </HBox.margin>
+                                          </ComboBox>
+                                       </children>
+                                       <VBox.margin>
+                                          <Insets top="5.0" />
+                                       </VBox.margin>
+                                    </HBox>
+                                    <Separator layoutX="10.0" layoutY="537.0" prefWidth="200.0">
+                                       <VBox.margin>
+                                          <Insets top="5.0" />
+                                       </VBox.margin>
+                                    </Separator>
+                                    <HBox alignment="CENTER_LEFT" layoutX="10.0" layoutY="150.0" prefHeight="29.0" prefWidth="366.0">
+                                       <children>
+                                          <Button fx:id="apt_action_save" mnemonicParsing="false" onAction="#saveAppointment" text="Save Appointment">
+                                             <HBox.margin>
+                                                <Insets left="30.0" />
+                                             </HBox.margin>
+                                          </Button>
+                                          <Button fx:id="apt_action_delete" layoutX="156.0" layoutY="12.0" mnemonicParsing="false" onAction="#deleteAppointment" text="Delete Selected">
+                                             <HBox.margin>
+                                                <Insets left="10.0" />
+                                             </HBox.margin>
+                                          </Button>
+                                          <Button fx:id="apt_action_clear_fields" layoutX="188.0" layoutY="12.0" mnemonicParsing="false" onAction="#clearAppointment" text="Clear">
+                                             <HBox.margin>
+                                                <Insets left="44.0" />
+                                             </HBox.margin>
+                                          </Button>
+                                       </children>
+                                       <VBox.margin>
+                                          <Insets top="5.0" />
+                                       </VBox.margin>
+                                    </HBox>
+                                    <Separator layoutX="10.0" layoutY="644.0" prefWidth="200.0">
+                                       <VBox.margin>
+                                          <Insets top="5.0" />
+                                       </VBox.margin>
+                                    </Separator>
+                                    <Label fx:id="apt_alert" alignment="TOP_LEFT" prefHeight="83.0" prefWidth="379.0" wrapText="true" />
+                                    <HBox alignment="BOTTOM_RIGHT" prefHeight="45.0" prefWidth="361.0" spacing="10.0">
+                                       <children>
+                                          <Button mnemonicParsing="false" onAction="#logOut" text="Log Out" />
+                                          <Button mnemonicParsing="false" onAction="#exit" text="Exit">
+                                             <HBox.margin>
+                                                <Insets right="10.0" />
+                                             </HBox.margin>
+                                          </Button>
+                                       </children>
+                                    </HBox>
+                                 </children>
+                              </VBox>
+                           </children>
+                        </HBox>
+                     </children>
+                  </AnchorPane>
+            </content>
+          </Tab>
+            <Tab text="Customers">
+               <content>
+                  <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
+                     <children>
+                        <HBox prefHeight="719.0" prefWidth="1356.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                           <children>
+                              <TableView fx:id="cust_table" maxWidth="-Infinity" prefHeight="719.0" prefWidth="1000.0">
+                                 <columns>
+                                    <TableColumn fx:id="cust_table_customer_id" prefWidth="103.0" text="Customer ID" />
+                                    <TableColumn fx:id="cust_table_name" prefWidth="144.0" text="Name" />
+                                    <TableColumn fx:id="cust_table_address" prefWidth="175.0" text="Address" />
+                                    <TableColumn fx:id="cust_table_postal_code" prefWidth="122.0" text="Postal Code" />
+                                    <TableColumn fx:id="cust_table_phone_number" prefWidth="155.0" text="Phone Number" />
+                                    <TableColumn fx:id="cust_table_country" prefWidth="144.0" text="Country" />
+                                    <TableColumn fx:id="cust_table_state_prov" prefWidth="151.0" text="State/Province" />
+                                 </columns>
+                              </TableView>
+                              <VBox fx:id="resetCustomer" prefHeight="768.0" prefWidth="366.0">
+                                 <children>
+                                    <Separator prefWidth="200.0">
+                                       <VBox.margin>
+                                          <Insets />
+                                       </VBox.margin>
+                                    </Separator>
+                                    <Label alignment="CENTER" layoutX="10.0" layoutY="23.0" prefHeight="17.0" prefWidth="367.0" text="Add/Edit Customers">
+                                       <font>
+                                          <Font name="System Bold" size="16.0" />
+                                       </font>
+                                    </Label>
+                                    <Separator layoutX="10.0" layoutY="48.0" prefWidth="200.0" />
+                                    <HBox alignment="CENTER" prefHeight="29.0" prefWidth="366.0" spacing="10.0">
+                                       <children>
+                                          <Button fx:id="cust_action_new" mnemonicParsing="false" onAction="#newCustomer" text="New Customer" />
+                                          <Button fx:id="cust_action_edit" layoutX="90.0" layoutY="12.0" mnemonicParsing="false" onAction="#editCustomer" text="Edit Selected" />
+                                          <Button fx:id="cust_action_reset_selected" mnemonicParsing="false" onAction="#resetCustomer" text="Reset Selection" />
+                                       </children>
+                                       <VBox.margin>
+                                          <Insets top="5.0" />
+                                       </VBox.margin>
+                                    </HBox>
+                                    <Separator layoutX="10.0" layoutY="142.0" prefWidth="200.0">
+                                       <VBox.margin>
+                                          <Insets top="5.0" />
+                                       </VBox.margin>
+                                    </Separator>
+                                    <HBox prefHeight="28.0" prefWidth="346.0" spacing="10.0">
+                                       <children>
+                                          <Label prefWidth="100.0" text="Customer ID">
+                                             <font>
+                                                <Font size="14.0" />
+                                             </font>
+                                             <HBox.margin>
+                                                <Insets top="3.0" />
+                                             </HBox.margin>
+                                          </Label>
+                                          <TextField fx:id="cust_field_id" disable="true" editable="false" prefHeight="25.0" prefWidth="200.0" />
+                                       </children>
+                                       <VBox.margin>
+                                          <Insets left="30.0" top="5.0" />
+                                       </VBox.margin>
+                                    </HBox>
+                                    <HBox layoutX="30.0" layoutY="192.0" prefHeight="28.0" prefWidth="346.0" spacing="10.0">
+                                       <children>
+                                          <Label prefHeight="20.0" prefWidth="100.0" text="Name">
+                                             <font>
+                                                <Font size="14.0" />
+                                             </font>
+                                             <HBox.margin>
+                                                <Insets top="3.0" />
+                                             </HBox.margin>
+                                          </Label>
+                                          <TextField fx:id="cust_field_name" prefHeight="25.0" prefWidth="200.0" />
+                                       </children>
+                                       <VBox.margin>
+                                          <Insets left="30.0" top="5.0" />
+                                       </VBox.margin>
+                                    </HBox>
+                                    <HBox layoutX="40.0" layoutY="220.0" prefHeight="28.0" prefWidth="331.0" spacing="10.0">
+                                       <children>
+                                          <Label prefHeight="20.0" prefWidth="100.0" text="Address">
+                                             <font>
+                                                <Font size="14.0" />
+                                             </font>
+                                             <HBox.margin>
+                                                <Insets top="3.0" />
+                                             </HBox.margin>
+                                          </Label>
+                                          <TextField fx:id="cust_field_address" prefHeight="25.0" prefWidth="200.0" />
+                                       </children>
+                                       <VBox.margin>
+                                          <Insets left="30.0" top="5.0" />
+                                       </VBox.margin>
+                                    </HBox>
+                                    <HBox layoutX="40.0" layoutY="326.0" prefHeight="28.0" prefWidth="346.0" spacing="10.0">
+                                       <children>
+                                          <Label prefHeight="20.0" prefWidth="100.0" text="Postal Code">
+                                             <font>
+                                                <Font size="14.0" />
+                                             </font>
+                                             <HBox.margin>
+                                                <Insets top="3.0" />
+                                             </HBox.margin>
+                                          </Label>
+                                          <TextField fx:id="cust_field_postal_code" prefHeight="25.0" prefWidth="200.0" />
+                                       </children>
+                                       <VBox.margin>
+                                          <Insets left="30.0" top="5.0" />
+                                       </VBox.margin>
+                                    </HBox>
+                                    <HBox layoutX="40.0" layoutY="220.0" prefHeight="28.0" prefWidth="346.0" spacing="10.0">
+                                       <children>
+                                          <Label prefHeight="20.0" prefWidth="100.0" text="Phone #">
+                                             <font>
+                                                <Font size="14.0" />
+                                             </font>
+                                             <HBox.margin>
+                                                <Insets top="3.0" />
+                                             </HBox.margin>
+                                          </Label>
+                                          <TextField fx:id="cust_field_phone_number" prefHeight="25.0" prefWidth="200.0" />
+                                       </children>
+                                       <VBox.margin>
+                                          <Insets left="30.0" top="8.0" />
+                                       </VBox.margin>
+                                    </HBox>
+                                    <Separator prefWidth="200.0">
+                                       <VBox.margin>
+                                          <Insets top="5.0" />
+                                       </VBox.margin>
+                                    </Separator>
+                                    <HBox layoutX="40.0" layoutY="354.0" prefHeight="28.0" prefWidth="346.0" spacing="10.0">
+                                       <children>
+                                          <Label prefHeight="20.0" prefWidth="100.0" text="Country">
+                                             <font>
+                                                <Font size="14.0" />
+                                             </font>
+                                             <HBox.margin>
+                                                <Insets top="3.0" />
+                                             </HBox.margin>
+                                          </Label>
+                                          <ComboBox fx:id="cust_field_country" onAction="#setCountry" prefHeight="25.0" prefWidth="200.0" />
+                                       </children>
+                                       <VBox.margin>
+                                          <Insets left="30.0" top="5.0" />
+                                       </VBox.margin>
+                                    </HBox>
+                                    <HBox layoutX="40.0" layoutY="288.0" prefHeight="28.0" prefWidth="346.0" spacing="10.0">
+                                       <children>
+                                          <Label prefHeight="20.0" prefWidth="100.0" text="State/Province">
+                                             <font>
+                                                <Font size="14.0" />
+                                             </font>
+                                             <HBox.margin>
+                                                <Insets top="3.0" />
+                                             </HBox.margin>
+                                          </Label>
+                                          <ComboBox fx:id="cust_field_state_prov" prefHeight="25.0" prefWidth="200.0" />
+                                       </children>
+                                       <VBox.margin>
+                                          <Insets left="30.0" top="5.0" />
+                                       </VBox.margin>
+                                    </HBox>
+                                    <Separator layoutX="10.0" layoutY="537.0" prefWidth="200.0">
+                                       <VBox.margin>
+                                          <Insets top="5.0" />
+                                       </VBox.margin>
+                                    </Separator>
+                                    <HBox alignment="CENTER_LEFT" layoutX="10.0" layoutY="150.0" prefHeight="29.0" prefWidth="366.0">
+                                       <children>
+                                          <Button fx:id="cust_action_save" mnemonicParsing="false" onAction="#saveCustomer" text="Save Customer">
+                                             <HBox.margin>
+                                                <Insets left="30.0" />
+                                             </HBox.margin>
+                                          </Button>
+                                          <Button fx:id="cust_action_delete" layoutX="156.0" layoutY="12.0" mnemonicParsing="false" onAction="#deleteCustomer" text="Delete Selected">
+                                             <HBox.margin>
+                                                <Insets left="10.0" />
+                                             </HBox.margin>
+                                          </Button>
+                                          <Button fx:id="cust_action_clear_fields" layoutX="188.0" layoutY="12.0" mnemonicParsing="false" onAction="#clearCustomer" text="Clear">
+                                             <HBox.margin>
+                                                <Insets left="64.0" />
+                                             </HBox.margin>
+                                          </Button>
+                                       </children>
+                                       <VBox.margin>
+                                          <Insets top="5.0" />
+                                       </VBox.margin>
+                                    </HBox>
+                                    <Separator layoutX="10.0" layoutY="644.0" prefWidth="200.0">
+                                       <VBox.margin>
+                                          <Insets top="5.0" />
+                                       </VBox.margin>
+                                    </Separator>
+                                    <Label fx:id="cust_alert" alignment="TOP_LEFT" prefHeight="308.0" prefWidth="361.0" wrapText="true" />
+                                    <HBox alignment="BOTTOM_RIGHT" prefHeight="45.0" prefWidth="361.0" spacing="10.0">
+                                       <children>
+                                          <Button mnemonicParsing="false" onAction="#logOut" text="Log Out" />
+                                          <Button mnemonicParsing="false" onAction="#exit" text="Exit">
+                                             <HBox.margin>
+                                                <Insets right="10.0" />
+                                             </HBox.margin>
+                                          </Button>
+                                       </children>
+                                    </HBox>
+                                 </children>
+                              </VBox>
+                           </children>
+                        </HBox>
+                     </children>
+                  </AnchorPane>
+               </content>
+            </Tab>
+            <Tab text="Reports">
+               <content>
+                  <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
+                     <children>
+                        <HBox prefHeight="719.0" prefWidth="1356.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                           <children>
+                              <ListView fx:id="report_text_out" prefHeight="719.0" prefWidth="1000.0">
+                                 <HBox.margin>
+                                    <Insets />
+                                 </HBox.margin>
+                              </ListView>
+                              <VBox prefHeight="768.0" prefWidth="366.0">
+                                 <children>
+                                    <Separator prefWidth="200.0">
+                                       <VBox.margin>
+                                          <Insets />
+                                       </VBox.margin>
+                                    </Separator>
+                                    <Label alignment="CENTER" prefHeight="7.0" prefWidth="361.0" text="Generate Report">
+                                       <font>
+                                          <Font name="System Bold" size="16.0" />
+                                       </font>
+                                       <VBox.margin>
+                                          <Insets />
+                                       </VBox.margin>
+                                    </Label>
+                                    <Separator prefWidth="200.0" />
+                                    <HBox layoutX="10.0" layoutY="51.0" prefHeight="25.0" prefWidth="366.0">
+                                       <children>
+                                          <RadioButton fx:id="report_totals" minWidth="-Infinity" mnemonicParsing="false" prefHeight="20.0" prefWidth="100.0" text="Totals">
+                                             <HBox.margin>
+                                                <Insets left="30.0" />
+                                             </HBox.margin>
+                                             <font>
+                                                <Font size="14.0" />
+                                             </font>
+                                          </RadioButton>
+                                          <Label prefHeight="25.0" prefWidth="269.0" text="*Appointment totals by type and month" wrapText="true">
+                                             <padding>
+                                                <Insets bottom="4.0" />
+                                             </padding>
+                                             <HBox.margin>
+                                                <Insets />
+                                             </HBox.margin>
+                                          </Label>
+                                       </children>
+                                       <VBox.margin>
+                                          <Insets top="5.0" />
+                                       </VBox.margin>
+                                    </HBox>
+                                    <HBox layoutX="10.0" layoutY="46.0" prefHeight="25.0" prefWidth="366.0">
+                                       <children>
+                                          <RadioButton fx:id="report_contacts" maxWidth="-Infinity" minWidth="-Infinity" mnemonicParsing="false" prefHeight="20.0" prefWidth="100.0" text="Contacts">
+                                             <HBox.margin>
+                                                <Insets left="30.0" />
+                                             </HBox.margin>
+                                             <font>
+                                                <Font size="14.0" />
+                                             </font>
+                                          </RadioButton>
+                                          <Label prefHeight="25.0" prefWidth="233.0" text="*Lists contacts appointment schedules" wrapText="true">
+                                             <padding>
+                                                <Insets bottom="4.0" />
+                                             </padding>
+                                          </Label>
+                                       </children>
+                                       <VBox.margin>
+                                          <Insets top="5.0" />
+                                       </VBox.margin>
+                                    </HBox>
+                                    <HBox layoutX="10.0" layoutY="76.0" prefHeight="25.0" prefWidth="366.0">
+                                       <children>
+                                          <RadioButton fx:id="report_countries" maxWidth="-Infinity" minWidth="-Infinity" mnemonicParsing="false" prefHeight="20.0" prefWidth="100.0" text="Countries">
+                                             <HBox.margin>
+                                                <Insets left="30.0" />
+                                             </HBox.margin>
+                                             <font>
+                                                <Font size="14.0" />
+                                             </font>
+                                          </RadioButton>
+                                          <Label prefHeight="25.0" prefWidth="233.0" text="*Lists appointments by country" wrapText="true">
+                                             <padding>
+                                                <Insets bottom="4.0" />
+                                             </padding>
+                                          </Label>
+                                       </children>
+                                       <VBox.margin>
+                                          <Insets top="5.0" />
+                                       </VBox.margin>
+                                    </HBox>
+                                    <Separator prefWidth="200.0">
+                                       <VBox.margin>
+                                          <Insets top="5.0" />
+                                       </VBox.margin>
+                                    </Separator>
+                                    <HBox alignment="CENTER" layoutX="10.0" layoutY="106.0" prefHeight="25.0" prefWidth="366.0">
+                                       <children>
+                                          <Button fx:id="report_action_generate" mnemonicParsing="false" onAction="#generateReport" text="Generate Report">
+                                             <HBox.margin>
+                                                <Insets />
+                                             </HBox.margin>
+                                          </Button>
+                                          <Button fx:id="report_action_clear_text" layoutX="40.0" layoutY="10.0" mnemonicParsing="false" onAction="#clearReport" text="Clear Report Window">
+                                             <HBox.margin>
+                                                <Insets left="20.0" />
+                                             </HBox.margin>
+                                          </Button>
+                                       </children>
+                                       <VBox.margin>
+                                          <Insets top="5.0" />
+                                       </VBox.margin>
+                                    </HBox>
+                                    <Separator prefWidth="200.0">
+                                       <VBox.margin>
+                                          <Insets top="5.0" />
+                                       </VBox.margin>
+                                    </Separator>
+                                    <Label fx:id="report_alert" alignment="TOP_LEFT" prefHeight="507.0" prefWidth="361.0" wrapText="true" />
+                                    <HBox alignment="BOTTOM_RIGHT" prefHeight="45.0" prefWidth="361.0" spacing="10.0">
+                                       <children>
+                                          <Button mnemonicParsing="false" onAction="#logOut" text="Log Out" />
+                                          <Button mnemonicParsing="false" onAction="#exit" text="Exit">
+                                             <HBox.margin>
+                                                <Insets right="10.0" />
+                                             </HBox.margin>
+                                          </Button>
+                                       </children>
+                                    </HBox>
+                                 </children>
+                              </VBox>
+                           </children>
+                        </HBox>
+                     </children>
+                  </AnchorPane>
+               </content>
+            </Tab>
+        </tabs>
+         <padding>
+            <Insets bottom="10.0" left="10.0" top="10.0" />
+         </padding>
+      </TabPane>
+   </children>
+</AnchorPane>
